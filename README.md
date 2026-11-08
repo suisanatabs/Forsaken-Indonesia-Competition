@@ -1,3 +1,15 @@
+## Version 1.4 (Major Design Update) | November 9, 2026
+
+**Developer Commentary:** This update introduces a major visual and structural redesign of the FIC website. The new design focuses on improving readability, navigation, and overall user experience while maintaining a clean and lightweight interface. This update also reclarify the tiebreaker mechanic.
+
+**New Content:**
+1. FIC web design overhaul
+
+**Updated Content:**
+1. Tiebreaker mechanic overhaul.
+
+=================================================================
+
 ## Version 1.2 (Major Update) | November 5, 2026
 
 **Developer Commentary:** This update focuses on improving the reader experience when navigating the FIC Guide and Rules. Since some of the rules may be difficult to understand, new features have been introduced to make the guide easier to navigate and read.
