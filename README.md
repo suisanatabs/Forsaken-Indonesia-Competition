@@ -1,4 +1,14 @@
-## Version 1.4 (Major Design Update) | November 9, 2026
+## Version 1.4 (Minor Update) | November 11, 2026
+
+**Developer Commentary:** This update is supposed to close the registration.
+
+**Updated Content:**
+1. Close the registration form.
+2. Fix tittle typo in English version.
+
+=================================================================
+
+## Version 1.3 (Major Update) | November 9, 2026
 
 **Developer Commentary:** This update introduces a major visual and structural redesign of the FIC website. The new design focuses on improving readability, navigation, and overall user experience while maintaining a clean and lightweight interface. This update also reclarify the tiebreaker mechanic.
 
