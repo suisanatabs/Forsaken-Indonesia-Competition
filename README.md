@@ -1,3 +1,13 @@
+## Version 1.5 (Major Update) | November 17, 2026
+
+**Developer Commentary:** This update is proposed to provide information about mid-priority stuff.
+
+**New Content:**
+1. Add popup that shows tournament timeline.
+2. Add copyright license in the web footer
+
+=================================================================
+
 ## Version 1.4 (Minor Update) | November 11, 2026
 
 **Developer Commentary:** This update is supposed to close the registration.
