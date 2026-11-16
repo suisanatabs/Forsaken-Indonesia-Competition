@@ -110,6 +110,119 @@ h3{margin:0 0 8px;color:var(--muted);font-size:11px;font-weight:750;line-height:
 .faq-item[open] summary::after{content:"−"}
 .faq-answer{padding:0 0 14px;color:var(--muted);font-size:14px;line-height:1.65}
 .page-footer{margin-top:58px;padding-top:16px;border-top:1px solid var(--border);color:var(--muted);font-size:12px;line-height:1.6}
+.copyright-notice {
+  margin-top: 24px;
+  padding-top: 16px;
+  border-top: 1px solid var(--rule);
+  text-align: center;
+  color: var(--muted);
+  font: 12px/1.7 system-ui, sans-serif;
+}
+.copyright-notice p {
+  margin: 4px 0;
+}
+/* Schedule announcement popup */
+body.announcement-open{overflow:hidden}
+.announcement-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:1000;
+  display:grid;
+  place-items:center;
+  padding:20px;
+  background:rgba(0,0,0,.62);
+  -webkit-backdrop-filter:blur(3px);
+  backdrop-filter:blur(3px);
+}
+.announcement-backdrop[hidden]{display:none!important}
+.announcement-modal{
+  position:relative;
+  width:min(100%,480px);
+  padding:25px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:var(--surface);
+  color:var(--ink);
+  box-shadow:0 24px 80px rgba(0,0,0,.28);
+}
+.announcement-top{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding-right:38px;
+}
+.announcement-brand-mark{
+  display:grid;
+  place-items:center;
+  flex:0 0 38px;
+  width:38px;
+  height:38px;
+  border-radius:7px;
+  background:var(--red);
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:-.06em;
+}
+.announcement-brand-copy{display:flex;flex-direction:column;gap:2px}
+.announcement-brand-name{font-size:13px;font-weight:750;line-height:1.25}
+.announcement-eyebrow{color:var(--red);font-size:10px;font-weight:750;letter-spacing:.1em;text-transform:uppercase}
+.announcement-close{
+  position:absolute;
+  top:18px;
+  right:18px;
+  display:grid;
+  place-items:center;
+  width:34px;
+  height:34px;
+  border:1px solid var(--border);
+  border-radius:7px;
+  background:var(--surface);
+  color:var(--muted);
+  font-size:20px;
+  line-height:1;
+  cursor:pointer;
+}
+.announcement-close:hover{background:var(--surface-soft);color:var(--ink)}
+.announcement-heading{margin:24px 0 5px;font-size:25px;font-weight:760;line-height:1.2;letter-spacing:-.035em}
+.announcement-description{margin:0 0 19px;color:var(--muted);font-size:13px;line-height:1.6}
+.announcement-schedule{overflow:hidden;border:1px solid var(--border);border-radius:8px;background:var(--surface)}
+.announcement-schedule-row{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:14px 15px;
+}
+.announcement-schedule-row+.announcement-schedule-row{border-top:1px solid var(--border)}
+.announcement-stage{font-size:13px;font-weight:650}
+.announcement-date{color:var(--red);font-size:13px;font-weight:750;text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+.announcement-note{margin:17px 0 19px;color:var(--muted);font-size:12px;line-height:1.6;text-align:center}
+.announcement-acknowledge{
+  display:block;
+  width:100%;
+  min-height:44px;
+  padding:11px 16px;
+  border:1px solid var(--red);
+  border-radius:7px;
+  background:var(--red);
+  color:#fff;
+  font-size:13px;
+  font-weight:750;
+  cursor:pointer;
+  transition:background .15s ease,border-color .15s ease;
+}
+.announcement-acknowledge:hover{background:#7f1717;border-color:#7f1717}
+@media(max-width:520px){
+  .announcement-modal{padding:21px 18px;border-radius:10px}
+  .announcement-heading{font-size:23px}
+  .announcement-schedule-row{padding:13px 12px}
+  .announcement-stage,.announcement-date{font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .announcement-acknowledge{transition:none}
+}
+
 @media(max-width:800px){
   .layout{display:block;max-width:100%}
   .sidebar{position:relative;height:auto;max-height:none;overflow:visible;gap:13px;padding:14px 18px;border-right:0;border-bottom:1px solid var(--border)}
@@ -530,8 +643,55 @@ h3{margin:0 0 8px;color:var(--muted);font-size:11px;font-weight:750;line-height:
   </ul>
 </section>
 
-    <footer class="page-footer" data-i18n="footer">Diadaptasi dari RFL 1v4/5 Basic Rules (Roblox Forsaken League).</footer>
+    <footer class="page-footer">
+        <p data-i18n="copyright">© 2026 Forsaken Indonesia Competition. All rights reserved.</p>
+        <p data-i18n="copyright-disclaimer">An independently organized community tournament.Not affiliated with Roblox Corporation or the creators of Forsaken.</p>
+    </footer>
   </main>
+</div>
+
+<!-- Indonesian-only tournament schedule announcement -->
+<div class="announcement-backdrop" id="scheduleAnnouncement" hidden>
+  <section class="announcement-modal" role="dialog" aria-modal="true"
+           aria-labelledby="announcementTitle" aria-describedby="announcementDescription">
+    <button type="button" class="announcement-close" id="announcementClose"
+            aria-label="Tutup pengumuman">&times;</button>
+
+    <div class="announcement-top">
+      <span class="announcement-brand-mark" aria-hidden="true">FIC</span>
+      <span class="announcement-brand-copy">
+        <span class="announcement-brand-name">Forsaken Indonesia Competition</span>
+        <span class="announcement-eyebrow">Pengumuman Resmi</span>
+      </span>
+    </div>
+
+    <h2 class="announcement-heading" id="announcementTitle">Jadwal Pertandingan</h2>
+    <p class="announcement-description" id="announcementDescription">
+      Catat tanggal pertandingan Forsaken Indonesia Competition!
+    </p>
+
+    <div class="announcement-schedule" aria-label="Jadwal turnamen">
+      <div class="announcement-schedule-row">
+        <span class="announcement-stage">Bracket 8</span>
+        <time class="announcement-date" datetime="2026-12-11">11 Desember 2026</time>
+      </div>
+      <div class="announcement-schedule-row">
+        <span class="announcement-stage">Bracket 4</span>
+        <time class="announcement-date" datetime="2026-12-12">12 Desember 2026</time>
+      </div>
+      <div class="announcement-schedule-row">
+        <span class="announcement-stage">Bracket 2 / Final</span>
+        <time class="announcement-date" datetime="2026-12-13">13 Desember 2026</time>
+      </div>
+    </div>
+
+    <p class="announcement-note">
+      Terima kasih telah berpartisipasi dalam Forsaken Indonesia Competition. Sampai jumpa di pertandingan!
+    </p>
+    <button type="button" class="announcement-acknowledge" id="announcementAcknowledge">
+      Mengerti
+    </button>
+  </section>
 </div>
 
 <script>
@@ -634,7 +794,9 @@ const translations = {
     "faq-5-a":"Semua Map yang tidak termasuk kategori Exclusive. Lihat daftar lengkapnya <a href=\"https://forsaken.wiki/Maps\">di sini</a>.",
     "faq-6-q":"Apakah tim boleh didaftarkan dengan kurang dari 5 pemain?",
     "faq-6-a":"Tidak.",
-    "footer":"Diadaptasi dari RFL 1v4/5 Basic Rules (Roblox Forsaken League)."
+    "footer":"Diadaptasi dari RFL 1v4/5 Basic Rules (Roblox Forsaken League).",
+    "copyright": "© 2026 Forsaken Indonesia Competition. Hak cipta dilindungi.",
+    "copyright-disclaimer": "Turnamen komunitas yang diselenggarakan secara independen. Tidak berafiliasi dengan Roblox Corporation maupun pemegang hak atas Forsaken."
   },
   en: {
     "brand-tagline":"By BillyLOLwkwk",
@@ -734,7 +896,9 @@ const translations = {
     "faq-5-a":"All Maps that are not categorized as Exclusive. See the full list <a href=\"https://forsaken.wiki/Maps\">here</a>.",
     "faq-6-q":"Can a team register with fewer than 5 players?",
     "faq-6-a":"No.",
-    "footer":"Adapted from the RFL 1v4/5 Basic Rules (Roblox Forsaken League)."
+    "footer":"Adapted from the RFL 1v4/5 Basic Rules (Roblox Forsaken League).",
+    "copyright": "© 2026 Forsaken Indonesia Competition. All rights reserved.",
+    "copyright-disclaimer": "An independently organized community tournament. Not affiliated with, endorsed by, or sponsored by Roblox Corporation or the rights holders of Forsaken."
   }
 };
 
@@ -858,6 +1022,81 @@ try {
   // Use Indonesian by default when browser storage is unavailable.
 }
 setLanguage(initialLanguage);
+
+// Show the schedule announcement once per browser tab session.
+const scheduleAnnouncement = document.getElementById("scheduleAnnouncement");
+const announcementClose = document.getElementById("announcementClose");
+const announcementAcknowledge = document.getElementById("announcementAcknowledge");
+let announcementPreviousFocus = null;
+
+function closeScheduleAnnouncement() {
+  if (scheduleAnnouncement.hidden) return;
+
+  scheduleAnnouncement.hidden = true;
+  document.body.classList.remove("announcement-open");
+
+  try {
+    sessionStorage.setItem("fic-schedule-announcement-seen", "true");
+  } catch (error) {
+    // The announcement still closes when session storage is unavailable.
+  }
+
+  if (announcementPreviousFocus && typeof announcementPreviousFocus.focus === "function") {
+    announcementPreviousFocus.focus();
+  }
+}
+
+function openScheduleAnnouncement() {
+  let alreadySeen = false;
+
+  try {
+    alreadySeen = sessionStorage.getItem("fic-schedule-announcement-seen") === "true";
+  } catch (error) {
+    // Show the announcement when browser storage is unavailable.
+  }
+
+  if (alreadySeen) return;
+
+  announcementPreviousFocus = document.activeElement;
+  scheduleAnnouncement.hidden = false;
+  document.body.classList.add("announcement-open");
+  announcementAcknowledge.focus();
+}
+
+announcementClose.addEventListener("click", closeScheduleAnnouncement);
+announcementAcknowledge.addEventListener("click", closeScheduleAnnouncement);
+
+scheduleAnnouncement.addEventListener("click", (event) => {
+  if (event.target === scheduleAnnouncement) closeScheduleAnnouncement();
+});
+
+document.addEventListener("keydown", (event) => {
+  if (scheduleAnnouncement.hidden) return;
+
+  if (event.key === "Escape") {
+    closeScheduleAnnouncement();
+    return;
+  }
+
+  // Keep keyboard focus inside the open announcement.
+  if (event.key === "Tab") {
+    const focusable = [...scheduleAnnouncement.querySelectorAll(
+      'button:not([disabled]), [href], input:not([disabled]), [tabindex]:not([tabindex="-1"])'
+    )];
+    const first = focusable[0];
+    const last = focusable[focusable.length - 1];
+
+    if (event.shiftKey && document.activeElement === first) {
+      event.preventDefault();
+      last.focus();
+    } else if (!event.shiftKey && document.activeElement === last) {
+      event.preventDefault();
+      first.focus();
+    }
+  }
+});
+
+openScheduleAnnouncement();
 
 const navLinks = [...document.querySelectorAll(".nav-list a")];
 const navMap = new Map(navLinks.map((link) => [link.getAttribute("href").slice(1), link]));
